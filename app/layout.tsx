@@ -5,8 +5,8 @@ import '../styles/terminal.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CyberForge Quantum Terminal',
-  description: 'A next-generation command interface with AI assistance',
+  title: 'CyberForge Terminal',
+  description: 'Next-generation command interface',
 }
 
 export default function RootLayout({
