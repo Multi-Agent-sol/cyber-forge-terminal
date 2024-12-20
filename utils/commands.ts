@@ -8,10 +8,6 @@ const fileSystem: { [key: string]: string | { [key: string]: string } } = {
   'home': {
     'documents': {
       'readme.txt': 'Welcome to CyberForge Terminal\nA next-generation command interface.',
-      'project_x.log': 'Project X Log: [REDACTED]',
-    },
-    'system': {
-      'config.ini': '[ENCRYPTED]',
     },
   },
 };
@@ -30,20 +26,13 @@ Available commands:
   cyber-agent       - Start Cyber Agent chat mode
   help              - Show this help message
   clear             - Clear the terminal
-  echo <message>    - Display a message
   ls                - List files and directories
-  cd <dir>          - Change directory
-  cat <file>        - Display file contents
-  pwd               - Print working directory
-  mkdir <dir>       - Create a new directory
-  rm <file/dir>     - Remove a file or directory
-  touch <file>      - Create a new file
-  date              - Show current date and time
-  hack <target>     - Attempt to hack a target system
+  cd <dir>         - Change directory
+  cat <file>       - Display file contents
+  hack <target>    - Attempt to hack a target
 `.trim()
     }),
     clear: () => ({ output: '' }),
-    echo: (args) => ({ output: args.join(' ') }),
     ls: () => {
       const currentDir = getCurrentDir();
       if (typeof currentDir === 'object') {
@@ -72,35 +61,6 @@ Available commands:
       }
       return { output: `cat: ${args[0]}: No such file`, error: true };
     },
-    pwd: () => ({ output: currentDirectory }),
-    mkdir: (args) => {
-      if (args.length === 0) return { output: 'Usage: mkdir <directory>', error: true };
-      const currentDir = getCurrentDir();
-      if (typeof currentDir === 'object') {
-        currentDir[args[0]] = {};
-        return { output: `Directory created: ${args[0]}` };
-      }
-      return { output: 'Unable to create directory', error: true };
-    },
-    rm: (args) => {
-      if (args.length === 0) return { output: 'Usage: rm <file/directory>', error: true };
-      const currentDir = getCurrentDir();
-      if (typeof currentDir === 'object' && args[0] in currentDir) {
-        delete currentDir[args[0]];
-        return { output: `Removed: ${args[0]}` };
-      }
-      return { output: `rm: ${args[0]}: No such file or directory`, error: true };
-    },
-    touch: (args) => {
-      if (args.length === 0) return { output: 'Usage: touch <filename>', error: true };
-      const currentDir = getCurrentDir();
-      if (typeof currentDir === 'object') {
-        currentDir[args[0]] = '';
-        return { output: `File created: ${args[0]}` };
-      }
-      return { output: 'Unable to create file', error: true };
-    },
-    date: () => ({ output: new Date().toString() }),
   };
 
   if (handlers[cmd]) {
