@@ -3,9 +3,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, Minus, Square } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { executeCommand, CommandResult } from './utils/commands'
-import { generateAIResponse } from './utils/mock-ai'
-import { simulateHack } from './utils/hacking'
+import { executeCommand, CommandResult } from '@/utils/commands'
+import { generateAIResponse } from '@/utils/cyber-agent-mistral'
+import { simulateHack } from '@/utils/hacking'
 
 interface Command {
   input: string
