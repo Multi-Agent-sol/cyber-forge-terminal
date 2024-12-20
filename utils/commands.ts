@@ -39,6 +39,7 @@ Available commands:
   rm <file/dir>     - Remove a file or directory
   touch <file>      - Create a new file
   date              - Show current date and time
+  hack <target>     - Attempt to hack a target system
 `.trim()
     }),
     clear: () => ({ output: '' }),
@@ -100,7 +101,6 @@ Available commands:
       return { output: 'Unable to create file', error: true };
     },
     date: () => ({ output: new Date().toString() }),
-    'cyber-agent': () => ({ output: 'Cyber Agent chat mode started', isAI: true }),
   };
 
   if (handlers[cmd]) {
