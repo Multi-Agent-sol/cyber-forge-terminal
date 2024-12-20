@@ -48,16 +48,3 @@ export async function generateAIResponse(input: string): Promise<string> {
   return generateMistralAIResponse(input);
 }
 
-// Fallback function in case Mistral AI API is not available
-export function generateMockResponse(input: string): string {
-  const responses = [
-    "Fascinating query. Let me process that through my quantum neural networks...",
-    "Your input has triggered a cascade of possibilities in my cognitive matrix.",
-    "Analyzing your request at the speed of entangled particles...",
-    "Interesting. That concept intersects with several cutting-edge technologies we're developing.",
-    "I'm cross-referencing your query with our vast databanks of futuristic knowledge.",
-    "Your question touches on some of the most advanced concepts in our digital frontier.",
-  ];
-  return responses[Math.floor(Math.random() * responses.length)];
-}
-
